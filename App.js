@@ -1,12 +1,12 @@
 
 import { TextInput, View,Text, StyleSheet, ScrollView ,StatusBar, Modal, Pressable, FlatList, Dimensions, TouchableOpacity} from "react-native";
-//import { GlobalStyles } from "./constants/styles";
+import { GlobalStyles } from "./constants/styles";
 import { useEffect, useState } from "react";
 import PrimaryButton, { SeconderyButton } from "./PrimaryButtons"
 import { useRef } from "react";
 import * as Animateble from 'react-native-animatable';
 import { StoreData } from "./data-storing";
-import axios from "axios";
+//import axios from "axios";
 
 const screen_width = Dimensions.get('screen').width
 const screen_height = Dimensions.get('screen').height
@@ -35,15 +35,15 @@ function Input({label,style,textInputConfig,invalid}) {
 export default function App() {
 
   const [qms_data, setQms_data] = useState([]);
-  const getQmsData = async() => {
-    const res = await axios.get("http://172.26.48.11:3000/api/getDatafromPostgres");
-    setQms_data(eval(res.data));
-  }
+  // const getQmsData = async() => {
+  //   const res = await axios.get("http://172.26.48.11:3000/api/getDatafromPostgres");
+  //   setQms_data(eval(res.data));
+  // }
 
-  useEffect(() => {
-   getQmsData();
+  // useEffect(() => {
+  //  getQmsData();
     
-  }, [])
+  // }, [])
 
   
   const [modalisVisible,setModalisVisible]=useState(false)
@@ -127,13 +127,13 @@ export default function App() {
   
   const [inputs,setInputs]= useState({
     date: new Date(),
-    lineNumber:0,
-    buyerName:'',    
-    styleName:'',
-    SO:0,
-    defectQuantity:0,                       
-    rejectQuatity:0,
-    production:0,      
+    NIDNumber:'',
+    department:'',    
+    applicantName:'',
+    machineName:'',
+    processName:'',                       
+    processTime:'',
+    rating:'',     
   }); 
 
   function inputChangeHandler(inputIdentifier,enteredValue) {
@@ -145,13 +145,13 @@ export default function App() {
   };
   const convertedInputs ={
     date: inputs.date,
-    lineNumber:+inputs.lineNumber,
-    buyerName:inputs.buyerName,    
-    styleName:inputs.styleName,
-    SO:+inputs.SO,
-    defectQuantity:+inputs.defectQuantity,                       
-    rejectQuatity:+inputs.rejectQuatity,
-    production:+inputs.production,
+    NIDNumber:+inputs.NIDNumber,
+    department:inputs.department,    
+    applicantName:inputs.applicantName,
+    machineName:inputs.machineName,
+    processName:inputs.processName,                       
+    processTime:+inputs.processTime,
+    rating:+inputs.production,
   }
   function defectsHandler(){
   //  const d=inputs.defectQuantity+1;
@@ -175,7 +175,7 @@ export default function App() {
     <>       
       <View style={styles.container}>
           <View style={[styles.inputTitleBackgroundContainer , {opacity:rmodalisVisible?0.3:1}]}>
-            <Text style={styles.inputTitleText}> QMS </Text>
+            <Text style={styles.inputTitleText}> Operator Assesment </Text>
           </View>
         <ScrollView style={{flex:10,opacity:rmodalisVisible?0.3:1}}>
           <View style={{flex:7}}>            
@@ -183,33 +183,33 @@ export default function App() {
               <Text style={{fontSize:10,fontWeight:'bold'}}> Date: {today.toLocaleDateString()} </Text>
             </View>
             <View style={{flex:6,margin:10}}>
-              <Input label={'Line: '+qms_data[0]?.line} 
+              <Input label={'NID: '} 
                 textInputConfig={{
                   keyboardType:'phone-pad',
                   maxLentgh: 10,
-                  onChangeText: inputChangeHandler.bind(this,'lineNumber'),
-                  value: inputs.lineNumber.toString(),
+                  onChangeText: inputChangeHandler.bind(this,'NIDNumber'),
+                  value: inputs.NIDNumber,
                 }}/>
-              <Input label={'Buyer Name'} 
+              <Input label={'Department'} 
                 textInputConfig={{
                   //keyboardType:'phone-pad',
                   maxLentgh: 10,
-                  onChangeText: inputChangeHandler.bind(this,'buyerName'),
-                  value: inputs.buyerName.toString(),
+                  onChangeText: inputChangeHandler.bind(this,'department'),
+                  value: inputs.department,
                 }}/>
-              <Input label={'Style Name'} 
+              <Input label={'Applicant Name'} 
                 textInputConfig={{
                   //keyboardType:'phone-pad',
                   maxLentgh: 10,
-                  onChangeText: inputChangeHandler.bind(this,'styleName'),
-                  value: inputs.styleName.toString(),
+                  onChangeText: inputChangeHandler.bind(this,'applicantName'),
+                  value: inputs.applicantName,
                 }}/>
-                <Input label={'SO'} 
+              <Input label={'Machine Name'} 
                 textInputConfig={{
-                  keyboardType:'phone-pad',
+                  //keyboardType:'phone-pad',
                   maxLentgh: 10,
-                  onChangeText: inputChangeHandler.bind(this,'SO'),
-                  value: inputs.SO.toString(),
+                  onChangeText: inputChangeHandler.bind(this,'machineName'),
+                  value: inputs.machineName,
                 }}/>
               {/* <View style={{flexDirection:'row',justifyContent:'center',alignItems:'center',padding:'4%',marginHorizontal:'4%',marginTop:10}}>
                 <View style={{width:'40%',justifyContent:'center',alignItems:'center',backgroundColor:'white',padding:'4%',borderRadius:10,marginHorizontal:'4%'}}>
@@ -275,7 +275,7 @@ export default function App() {
                         keyboardType:'decimal-pad',
                         maxLentgh: 10,
                         onChangeText: inputChangeHandler.bind(this,'rejectQuatity'),
-                        value: inputs.rejectQuatity.toString(),
+                        value: inputs.processTime.toString(),
                       }}/>
                   </View>
                   <View style={styles.modal2ButtonContainer}>
