@@ -1,8 +1,7 @@
 {
   "expo": {
-    "name": "ARM'S",
-    "slug": "arms",
-    "owner":"taifulamin",
+    "name": "ARMS",
+    "slug": "ARMS",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -30,7 +29,7 @@
     },
     "extra": {
       "eas": {
-        "projectId": "369d1d42-082d-45ce-941b-32e2235e098a"
+        "projectId": "083182e0-3519-4e3e-94fc-07724b51c526"
       }
     }
   }
