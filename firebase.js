@@ -8,14 +8,13 @@ import { getDatabase } from "firebase/database"
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyDUZV82N2B4RAFfrttAAUiv78d01dRM1e4",
-  authDomain: "qmsreport-93562.firebaseapp.com",
-  projectId: "qmsreport-93562",
-  storageBucket: "qmsreport-93562.appspot.com",
-  messagingSenderId: "761363350875",
-  appId: "1:761363350875:web:e34f81298b3955b3f8867e"
+  apiKey: "AIzaSyAMlaefa2jfYnsW1GcGER3-ZGZwyp-enlI",
+  authDomain: "testtrial-6c836.firebaseapp.com",
+  projectId: "testtrial-6c836",
+  storageBucket: "testtrial-6c836.appspot.com",
+  messagingSenderId: "825532816360",
+  appId: "1:825532816360:web:f5b8354485dd4f04a7a25d"
 };
-
 // Initialize Firebase
 export const firebaseApp = initializeApp(firebaseConfig);
 export const database = getFirestore(firebaseApp);

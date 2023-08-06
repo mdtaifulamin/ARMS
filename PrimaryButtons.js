@@ -1,8 +1,9 @@
-import { View,Text, Pressable, StyleSheet,TouchableOpacity } from "react-native";
+import { View,Text, Pressable, StyleSheet,TouchableOpacity,Dimensions } from "react-native";
 import { useRef } from "react";
 import * as Animateble from 'react-native-animatable';
 import { GlobalStyles } from "./constants/styles";
-
+const screen_width = Dimensions.get('screen').width
+const screen_height = Dimensions.get('screen').height
 export default function PrimaryButton({children,onPress}){
     const flashAnimRef= useRef();
     
@@ -55,9 +56,9 @@ const styles= StyleSheet.create({
         elevation:5,
         shadowColor:'#000',
         marginHorizontal:5,
-        width:150,
-        height:150,
-        borderRadius:75,
+        width:screen_width*0.5,
+        height:screen_height*0.07,
+        borderRadius:10,
         justifyContent:'center'
 
 
@@ -77,7 +78,7 @@ const styles= StyleSheet.create({
     buttonText:{
         fontWeight:'900',
         textAlign:'center',
-        color:'white',
+        color:GlobalStyles.colors.buttonTextColor,
         fontSize:20,
     }
 })

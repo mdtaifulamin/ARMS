@@ -6,7 +6,7 @@ export const GlobalStyles={
             primary400: '#3b7a57 ',
             primary500: '#B3E5BE',//#3e04c3
             primary700: 'white',
-            primaryButtonColor: '#B3E5BE',
+            primaryButtonColor: 'white',
             accent500: 'black',
             error50: '#FF0000',
             error500: '#9b095c',
@@ -17,12 +17,13 @@ export const GlobalStyles={
             headerColor:'#edf6f9',
             text_border_button:"#008921",
             button1:"#008921",
-            buttonTextColor:"#ffffff",
+            buttonTextColor:"black",
             inputBox:"White",
             deleteButton:"#760000",
             titleBackground:'white',
             titleText:"black",
             textcolor:"black",
+            inputtextcolor:"gray",
             defectsBackground:'white',
             inputBackgroundColor:'#FFFF',
     }
