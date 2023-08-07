@@ -34,7 +34,6 @@ export default function App() {
   //const childRef = useRef(null);
   const [laps, setLaps] = useState([]);
     
-    
   const getCycleTimeFromLaps = (laps) => {
       let totalTime = 0
       for(let v of laps){

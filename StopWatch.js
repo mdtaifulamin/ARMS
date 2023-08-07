@@ -1,4 +1,4 @@
-import React, { forwardRef, useEffect, useRef, useState, } from 'react'
+import React, {useEffect, useRef, useState, } from 'react'
 import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import { AntDesign } from '@expo/vector-icons';
 
