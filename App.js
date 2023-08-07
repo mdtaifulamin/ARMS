@@ -1,12 +1,10 @@
 import Stopwatch from "./StopWatch";
-import { TextInput, View,Text, StyleSheet, ScrollView ,StatusBar, Modal, Pressable, FlatList, Dimensions, TouchableOpacity} from "react-native";
+import { TextInput, View,Text, StyleSheet, ScrollView ,StatusBar, Modal, FlatList, Dimensions, TouchableOpacity} from "react-native";
 import { GlobalStyles } from "./constants/styles";
 import { useEffect, useState } from "react";
 import PrimaryButton, { SeconderyButton } from "./PrimaryButtons"
-import { useRef } from "react";
-import * as Animateble from 'react-native-animatable';
 import { StoreData } from "./data-storing";
-//import axios from "axios";
+
 
 const screen_width = Dimensions.get('screen').width
 const screen_height = Dimensions.get('screen').height
@@ -38,28 +36,14 @@ export default function App() {
     
     
   const getCycleTimeFromLaps = (laps) => {
-      // console.log('laps :'+ laps)
       let totalTime = 0
       for(let v of laps){
-          totalTime = totalTime + Number(v)
-          
+          totalTime = totalTime + Number(v)         
       }
       console.log('total time :'+ totalTime)
       return totalTime/laps.length;
   }
 
-  const getCapcityFromLaps = (laps) => {
-      const cycleTime = getCycleTimeFromLaps(laps)
-      return 3060/cycleTime;
-  }
-
-  const getSmvFromLaps = (laps) => {
-      const cycleTime = getCycleTimeFromLaps(laps)
-      return cycleTime/60
-  }
-
-  
-  // console.log(iD, lineNo, fabricsType, remarks)
 
   useEffect(() => {
       totalInterval=[]
@@ -71,21 +55,7 @@ export default function App() {
      inputChangeHandler("processTime", isNaN(getCycleTimeFromLaps(laps).toFixed(2))?0:getCycleTimeFromLaps(laps).toFixed(2))
   }, [laps])
 
- 
 
-
-  const [qms_data, setQms_data] = useState([]);
-  // const getQmsData = async() => {
-  //   const res = await axios.get("http://172.26.48.11:3000/api/getDatafromPostgres");
-  //   setQms_data(eval(res.data));
-  // }
-
-  // useEffect(() => {
-  //  getQmsData();
-    
-  // }, [])
-
-  
   const [modalisVisible,setModalisVisible]=useState(false)
   const [rmodalisVisible,setrModalisVisible]=useState(false)
   const [pmodalisVisible,psetrModalisVisible]=useState(false)
@@ -153,12 +123,7 @@ export default function App() {
  
   const DefectsItem = ({ item }) => {
     const  handleDefectPress = async() => {
-      //setModalisVisible(false);
      psetrModalisVisible(true);
-      // setInputs((prevInputs) => ({
-      //   ...prevInputs,
-      //   [item.id]: 1,
-      // }));
       setInputs({...inputs,processName: item.processName,factorySMV: item.factorySMV,machineName:item.machineName})
     };
    
@@ -175,8 +140,6 @@ export default function App() {
     
     await StoreData(convertedInputs)   
     psetrModalisVisible(false)
-    
-      //childRef.current.reset();
  }
   
   const [inputs,setInputs]= useState({
@@ -209,20 +172,7 @@ export default function App() {
     rating:+inputs.rating,
   }
   function processHandler(){
-  //  const d=inputs.defectQuantity+1;
-  //  inputChangeHandler("defectQuantity",d)
   setModalisVisible(true)
-  }
-
-  async function  rejectsHandler(){
-    setrModalisVisible(true)
-    //inputChangeHandler("rejectQuatity",r)
-  }
-  async function  rejectsSubmitHandler(){
-    setrModalisVisible(false)
-    //inputChangeHandler("rejectQuatity",r)
-    await StoreData(convertedInputs)
-    inputChangeHandler("rejectQuatity",0)
   }
 
   const today= new Date();
@@ -363,39 +313,7 @@ export default function App() {
                       </View>      
               </View>
             </ScrollView>
-          </Modal>
-          
-        </View>
-        <View style={{justifyContent:'center',alignItems:'center',}}>
-          <Modal
-            animationType='slide'
-            transparent={true}
-            //presentationStyle="modal"
-            visible={rmodalisVisible}
-            onRequestClose={()=>{
-              setModalisVisible(!rmodalisVisible)
-            }}>
-            <View style={{flex:1,justifyContent:'center',alignItems:'center',}}> 
-              <View style={styles.modal2Container}>
-                <View style={styles.modal2TitleContainer}>
-                  <Text style={styles.modal2TitleText}> Rejection Quantity </Text>
-                </View>
-                  <View style={{maxWidth:screen_width,justifyContent:'center',alignItems:'center',}}>
-                    <Input label={'Insert Reject Quantity'} 
-                      textInputConfig={{
-                        keyboardType:'decimal-pad',
-                        maxLentgh: 10,
-                        onChangeText: inputChangeHandler.bind(this,'rejectQuatity'),
-                        value: inputs.processTime.toString(),
-                      }}/>
-                  </View>
-                  <View style={styles.modal2ButtonContainer}>
-                    <SeconderyButton onPress={rejectsSubmitHandler}>Submit</SeconderyButton>
-                    <SeconderyButton onPress={()=>{setrModalisVisible(false)}}>Cancel</SeconderyButton>
-                  </View>
-              </View>         
-            </View>
-          </Modal>
+          </Modal>         
         </View>
         <StatusBar style="auto" />
     </>
